@@ -1,0 +1,6 @@
+[core]
+    remote = ml_project_data
+['remote "ml_project_data"']
+    url = gdrive://1zPNSQT1TVbuWokWo1KQSY-ObnRZd-xEX
+    gdrive_use_service_account = true
+    gdrive_service_account_json_file_path = ../dit-version-tools-g4-868ac8393e0d.json

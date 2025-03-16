@@ -1,0 +1,7 @@
+.git
+.gitignore
+Docker
+.dvc
+__pycache__
+.pytest_cache
+dit-version-tools-g4-868ac8393e0d.json
