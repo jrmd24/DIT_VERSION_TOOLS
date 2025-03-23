@@ -1,10 +1,14 @@
 numpy
-bs4
-requests
+#bs4
+#requests
 scipy
 matplotlib
 pandas
-streamlit
+#streamlit
 seaborn
 pybase64
+python-dotenv
+Watchdog
+greenlet
+Flask
 
