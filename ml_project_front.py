@@ -1,17 +1,52 @@
 import base64
 
 import matplotlib.pyplot as plt
-import ml_project_back as mpb
+
+# import ml_project_back as mpb
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from flask import Flask, flash, redirect, render_template, request, url_for
+from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoescape
+
+env = Environment(
+    # loader=PackageLoader("ml_project_front"),
+    loader=FileSystemLoader(searchpath="./"),
+    autoescape=select_autoescape(),
+)
 
 app = Flask(__name__)
+
+page_options = {
+    ("index", "Accueil"),
+    ("classification", "Classification"),
+    ("regression", "Regression"),
+}
 
 
 @app.route("/")
 def index():
+    # template = env.get_template("index.html")
+    context = {"page_options": page_options}
+    # navigation = [("index", "Accueil"), ("regression", "Regression")]
+    """context = {
+        "index": "Accueil",
+        "classification": "Classification",
+        "regression": "Regression",
+    }"""
+    # context = {"navigation": navigation}
+
+    return render_template("index.html", **context)
+    # return template.render(page_options)
+
+
+@app.route("/classification")
+def classification():
+    return render_template("index.html")
+
+
+@app.route("/regression")
+def regression():
     return render_template("index.html")
 
 
