@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <aside class="sidebar">
+            <nav>
+                <ul>
+
+                    {% for item in page_options %}
+                    <li><a href="{{ url_for(item[0]) }}">{{ item[1] }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+        <div id="footer">
+            {% block footer %}
+            &copy; Copyright 2025 by <a href="{{ url_for('index') }}">Groupe 4 - DIT M2 IA</a>.
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
