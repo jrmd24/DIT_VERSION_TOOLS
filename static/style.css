@@ -23,6 +23,7 @@ body {
     padding: 20px;
     background-color: #f0f0f0;
     cursor: pointer;
+    z-index: 100;
 }
 
 .bar {
@@ -35,10 +36,11 @@ body {
     width: 200px;
     background-color: #f0f0f0;
     padding: 20px;
+    padding-top: 80px;
     transition: transform 0.3s ease-in-out;
     transform: translateX(-100%);
     position: relative;
-    top: 65px;
+    /*top: 65px;*/
     left: -70px;
     /* Masquer par défaut */
 }
@@ -72,6 +74,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 2.5rem;
+    text-align: center;
     /* Footer height */
 }
 
@@ -79,4 +82,10 @@ body {
     .sidebar {
         width: 150px;
     }
+}
+
+.title2 {
+    border-bottom: 1px solid rgb(92, 0, 204);
+    color: rgb(92, 0, 204);
+    margin-top: 25px;
 }

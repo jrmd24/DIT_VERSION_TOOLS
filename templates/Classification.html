@@ -1,0 +1,12 @@
+{% extends "basemodeling.html" %}
+{% block title %}Modélisation{% endblock %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block pagetitle %}Classification{% endblock %}
+{% block action_url %}{{ url_for("classification") }}{% endblock %}
+{% block mlmodel_url %}{{ url_for('static', filename='ml_models/Fraud_detection_model.pkl') }}{% endblock %}
+{% block content %}
+{{ super() }}
+{% endblock %}
