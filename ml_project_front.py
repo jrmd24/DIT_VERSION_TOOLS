@@ -17,37 +17,51 @@ env = Environment(
 
 app = Flask(__name__)
 
+app.add_url_rule(
+    "/ML_Models/<path:filename>", endpoint="mlmodel", view_func=app.send_static_file
+)
+
 page_options = {
-    ("index", "Accueil"),
-    ("classification", "Classification"),
     ("regression", "Regression"),
+    ("classification", "Classification"),
+    ("index", "Accueil"),
 }
+
+regression_models = [
+    ("Linear", "Regression Linéaire"),
+    ("Ridge", "Ridge"),
+    ("Lasso", "Lasso"),
+    ("SVM", "SVM"),
+]
+classification_models = [
+    ("LogisticRegression", "Régression Logistique"),
+    ("SVC", "SVC"),
+    ("RandomForest", "Random Forest"),
+]
 
 
 @app.route("/")
 def index():
     # template = env.get_template("index.html")
     context = {"page_options": page_options}
-    # navigation = [("index", "Accueil"), ("regression", "Regression")]
-    """context = {
-        "index": "Accueil",
-        "classification": "Classification",
-        "regression": "Regression",
-    }"""
-    # context = {"navigation": navigation}
 
     return render_template("index.html", **context)
     # return template.render(page_options)
 
 
-@app.route("/classification")
+@app.route("/classification", methods=["GET", "POST"])
 def classification():
-    return render_template("index.html")
+    context = {"page_options": page_options, "model_options": classification_models}
+    # if request.method == 'POST':
+
+    return render_template("Classification.html", **context)
 
 
-@app.route("/regression")
+@app.route("/regression", methods=["GET", "POST"])
 def regression():
-    return render_template("index.html")
+    context = {"page_options": page_options, "model_options": regression_models}
+    # if request.method == 'POST':
+    return render_template("Regression.html", **context)
 
 
 # local_css("style.css")

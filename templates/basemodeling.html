@@ -1,0 +1,44 @@
+{% extends "masterpage.html" %}
+{% block title %}Modélisation{% endblock %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block content %}
+<h1>{% block pagetitle %}Accueil{% endblock %}</h1>
+<p class="important">
+    {% block pageintro %}
+
+    {% endblock pageintro %}
+</p>
+
+<form action="{% block action_url %}{% endblock %}"></form>
+
+<h2 class="title2">Mod&egrave;le de machine learning &agrave; entra&icirc;ner</h2>
+<label for="modelesml">S&eacute;lectionner le mod&egrave;le :</label>
+<select name="modelesml" id="modelesml">
+    {% for item in model_options %}
+    <option value="{{ item[0] }}">{{ item[1] }}</option>
+    {% endfor %}
+</select>
+
+<h2 class="title2">Donn&eacute;es initiales</h2>
+
+<label for="data_file">S&eacute;lectionner le fichier contenant les donn&eacute;es :</label>
+
+<input type="file" id="initialDataFile" name="data_file" accept="text/csv, text/plain" />
+<input type="submit" id="initialDataFileSubmission" name="Envoyer" value="Envoyer" />
+</form>
+
+<h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
+
+<a href="{% block mlmodel_url %}{% endblock %}" download="ml_model">
+    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="75px" height="100px">
+</a>
+
+<h2 class="title2">R&eacute;sultats de la mod&eacute;lisation</h2>
+
+{% block commonmodelingparts %}
+{% endblock commonmodelingparts %}
+
+{% endblock %}

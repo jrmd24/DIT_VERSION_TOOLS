@@ -1,12 +1,21 @@
 {% extends "masterpage.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}Accueil{% endblock %}
 {% block head %}
 {{ super() }}
 
 {% endblock %}
 {% block content %}
-<h1>Index</h1>
+<h1>{% block pagetitle %}Accueil{% endblock %}</h1>
 <p class="important">
-    Welcome to my awesome homepage.
+    {% block pageintro %}
+
+    Ceci est une application web de gestion de données de Machine Learning permettant aux utilisateurs d'uploader des
+    données,
+    d'entraîner un modèle de machine learning et de visualiser les résultats de l'entraînement.
+
+    {% endblock %}
 </p>
+
+
+
 {% endblock %}
