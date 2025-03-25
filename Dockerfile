@@ -26,4 +26,4 @@ EXPOSE 5000
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-ENTRYPOINT ["flask", "--app", "ml_project_front", "run", "--host=0.0.0.0", "--server.port=5000", "--server.address=0.0.0.0"]
+ENTRYPOINT ["flask", "--app", "ml_project_front", "run", "--host=0.0.0.0", "--port=5000"]
