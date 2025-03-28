@@ -1,12 +1,12 @@
 import base64
+from pathlib import Path
 
 import matplotlib.pyplot as plt
-
-# import ml_project_back as mpb
+import ml_project_back as mpb
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoescape
 
 env = Environment(
@@ -20,6 +20,10 @@ app = Flask(__name__)
 app.add_url_rule(
     "/ML_Models/<path:filename>", endpoint="mlmodel", view_func=app.send_static_file
 )
+
+DATA_DIR = Path("Data/")
+# Set the secret key to some random bytes. Keep this really secret! This is for session data management
+app.secret_key = b"H13aV1]qi$pZ"
 
 page_options = {
     ("regression", "Regression"),
@@ -40,8 +44,18 @@ classification_models = [
 ]
 
 
+def get_session_id():
+    if "client_id" in session:
+        flash(f'Your session is identified as n° {session["client_id"]}')
+    else:
+        session["client_id"] = mpb.generate_request_id()
+
+    return session["client_id"]
+
+
 @app.route("/")
 def index():
+
     # template = env.get_template("index.html")
     context = {"page_options": page_options}
 
@@ -52,7 +66,22 @@ def index():
 @app.route("/classification", methods=["GET", "POST"])
 def classification():
     context = {"page_options": page_options, "model_options": classification_models}
-    # if request.method == 'POST':
+    if request.method == "POST":
+        current_client_id = get_session_id()
+        classification_model_selection = request.form["modelesml"]
+        target_column_name = request.form["targetcolumn"]
+        uploaded_file = request.files["initialDataFile"]
+        if uploaded_file.filename != "":
+            uploaded_file.save(
+                f"{DATA_DIR}/{uploaded_file.filename}_{current_client_id}.txt"
+            )
+            mpb.process_client_request(
+                current_client_id,
+                "classification",
+                classification_model_selection,
+                uploaded_file,
+                target_column_name,
+            )
 
     return render_template("Classification.html", **context)
 
