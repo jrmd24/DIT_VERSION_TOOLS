@@ -9,3 +9,27 @@
 2025-03-28 19:45:50,291 - 20250328_194534 - Prétraitement des données
 2025-03-28 19:45:51,078 - 20250328_194534 - Évaluation du modèle
 2025-03-28 19:45:51,113 - 20250328_194534 - Échec traitement: name 'np' is not defined
+2025-03-28 20:48:02,326 - 20250328_204802 - Début traitement demande 20250328_204802
+2025-03-28 20:48:02,326 - 20250328_204802 - Chargement des données
+2025-03-28 20:48:02,335 - 20250328_204802 - Prétraitement des données
+2025-03-28 20:48:02,336 - 20250328_204802 - Échec traitement: "['Price'] not found in axis"
+2025-03-28 20:48:44,518 - 20250328_204844 - Début traitement demande 20250328_204844
+2025-03-28 20:48:44,519 - 20250328_204844 - Chargement des données
+2025-03-28 20:48:44,528 - 20250328_204844 - Prétraitement des données
+2025-03-28 20:48:44,529 - 20250328_204844 - Échec traitement: "['Price'] not found in axis"
+2025-03-28 21:21:42,173 - 20250328_212142 - Début traitement demande 20250328_212142
+2025-03-28 21:21:42,173 - 20250328_212142 - Chargement des données
+2025-03-28 21:21:42,182 - 20250328_212142 - Prétraitement des données
+2025-03-28 21:21:42,183 - 20250328_212142 - Échec traitement: "['Price'] not found in axis"
+2025-03-28 21:38:03,322 - 20250328_213803 - Début traitement demande 20250328_213803
+2025-03-28 21:38:03,322 - 20250328_213803 - Chargement des données
+2025-03-28 21:38:03,332 - 20250328_213803 - Prétraitement des données
+2025-03-28 21:38:03,341 - 20250328_213803 - Échec traitement: could not convert string to float: 'yes'
+2025-03-28 22:02:00,503 - 20250328_220200 - Début traitement demande 20250328_220200
+2025-03-28 22:02:00,503 - 20250328_220200 - Chargement des données
+2025-03-28 22:02:15,864 - 20250328_220200 - Prétraitement des données
+2025-03-28 22:02:16,537 - 20250328_220200 - Évaluation du modèle
+2025-03-28 22:02:17,183 - 20250328_220217 - Début traitement demande 20250328_220217
+2025-03-28 22:02:17,183 - 20250328_220217 - Chargement des données
+2025-03-28 22:02:17,189 - 20250328_220217 - Prétraitement des données
+2025-03-28 22:02:17,486 - 20250328_220217 - Évaluation du modèle
