@@ -84,6 +84,127 @@ backend_logger.addHandler(file_handler)
 for dir_path in [MODEL_DIR, REPORT_DIR, LOG_DIR, DATA_DIR]:
     dir_path.mkdir(parents=True, exist_ok=True)
 
+def load_data(file_path, request_id):
+    """Charge les données avec typage correct"""
+    backend_logger.info("Chargement des données", extra={"request_id": request_id})
+    
+    try:
+        df = pd.read_csv(file_path)
+        save_artifact(df, DATA_DIR / f"raw_data_{request_id}.csv", request_id)
+        return df
+    except Exception as e:
+        backend_logger.error(
+            f"Erreur de chargement: {str(e)}", 
+            extra={"request_id": request_id},
+            exc_info=True
+        )
+        raise
+
+def preprocess_data(df, request_id, target_col, model_type):
+    """Prétraitement des données selon le type de modèle"""
+    backend_logger.info("Prétraitement en cours...", extra={"request_id": request_id})
+    
+    try:
+        # Conversion des variables catégorielles
+        categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+        for col in categorical_cols:
+            if df[col].nunique() == 2:
+                df[col] = df[col].astype('category').cat.codes
+            else:
+                df = pd.get_dummies(df, columns=[col], prefix=col, drop_first=True)
+
+        # Séparation features/target
+        X = df.drop(target_col, axis=1)
+        y = df[target_col]
+
+        # Rééchantillonnage pour la classification
+        if model_type == "classification":
+            rus = RandomUnderSampler(random_state=42)
+            X, y = rus.fit_resample(X, y)
+
+        # Normalisation
+        scaler = StandardScaler()
+        X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+
+        # Sauvegarde
+        processed_data = pd.concat([X_scaled, y], axis=1)
+        save_artifact(processed_data, DATA_DIR / f"processed_{request_id}.csv", request_id)
+
+        return train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+    except Exception as e:
+        backend_logger.error(f"Échec prétraitement: {str(e)}", extra={"request_id": request_id}, exc_info=True)
+        raise
+
+def build_model(model_name, model_type):
+    """Construction du pipeline de modèle"""
+    model_map = {
+        "classification": {
+            "LogisticRegression": LogisticRegression(max_iter=1000),
+            "SVC": SVC(probability=True),
+            "RandomForest": RandomForestClassifier(n_estimators=100),
+            "GradientBoosting": GradientBoostingClassifier()
+        },
+        "regression": {
+            "Linear": LinearRegression(),
+            "Ridge": Ridge(),
+            "Lasso": Lasso(alpha=0.01),
+            "SVM": SVR(),
+            "RandomForest": RandomForestRegressor(n_estimators=100)
+        }
+    }
+    
+    return Pipeline([
+        ('scaler', StandardScaler()),
+        ('model', model_map[model_type][model_name])
+    ])
+
+def evaluate_model(model, X_test, y_test, request_id, model_type):
+    """Évaluation des performances du modèle"""
+    backend_logger.info("Évaluation en cours...", extra={"request_id": request_id})
+    
+    metrics = {}
+    fig = plt.figure(figsize=(12, 6))
+
+    try:
+        if model_type == "classification":
+            y_pred = model.predict(X_test)
+            y_proba = model.predict_proba(X_test)[:, 1] if hasattr(model, "predict_proba") else None
+
+            # Métriques
+            metrics.update({
+                "accuracy": accuracy_score(y_test, y_pred),
+                "confusion_matrix": confusion_matrix(y_test, y_pred).tolist(),
+                "classification_report": classification_report(y_test, y_pred, output_dict=True)
+            })
+
+            # Courbe ROC
+            if y_proba is not None:
+                fpr, tpr, _ = roc_curve(y_test, y_proba)
+                metrics["roc_auc"] = auc(fpr, tpr)
+                plt.plot(fpr, tpr, label='Courbe ROC')
+                plt.plot([0, 1], [0, 1], linestyle='--')
+
+        else:
+            y_pred = model.predict(X_test)
+            metrics.update({
+                "rmse": np.sqrt(mean_squared_error(y_test, y_pred)),
+                "mae": mean_absolute_error(y_test, y_pred),
+                "r2_score": r2_score(y_test, y_pred)
+            })
+            plt.scatter(y_test, y_pred)
+            plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
+
+        # Sauvegarde visualisation
+        plt.title(f"Résultats {model_type} - {request_id}")
+        save_artifact(fig, REPORT_DIR / f"eval_{request_id}.png", request_id)
+        plt.close()
+
+        return metrics
+
+    except Exception as e:
+        backend_logger.error(f"Échec évaluation: {str(e)}", extra={"request_id": request_id}, exc_info=True)
+        raise
 
 def process_client_request(
     client_id, model_type, model_name, data_file_path, target_col_name
@@ -148,29 +269,6 @@ def process_client_request(
             exc_info=True
         )
         return client_id, Path(""), {"error": str(e)}
-
-# ... (Les autres fonctions restent identiques mais utilisent backend_logger au lieu de logger)
-
-def load_data(file_path, request_id):
-    """Charge les données avec typage correct"""
-    backend_logger.info(
-        "Chargement des données", 
-        extra={"request_id": request_id}
-    )
-    
-    try:
-        df = pd.read_csv(file_path)
-        save_artifact(df, DATA_DIR / f"raw_data_{request_id}.csv", request_id)
-        return df
-    except Exception as e:
-        backend_logger.error(
-            f"Erreur de chargement: {str(e)}", 
-            extra={"request_id": request_id},
-            exc_info=True
-        )
-        raise
-
-# ... (Les autres fonctions restent inchangées)
 
 if __name__ == "__main__":
     # Exécution en mode standalone
