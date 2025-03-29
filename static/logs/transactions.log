@@ -65,3 +65,13 @@ Traceback (most recent call last):
     X_train, X_test, y_train, y_test = preprocess_data(
                                        ^^^^^^^^^^^^^^^
 NameError: name 'preprocess_data' is not defined
+2025-03-29 16:24:14 - 20250329_162414 - INFO - Début traitement demande 20250329_162414
+2025-03-29 16:24:14 - 20250329_162414 - INFO - Chargement des données
+2025-03-29 16:24:29 - 20250329_162414 - INFO - Prétraitement en cours...
+2025-03-29 16:24:30 - 20250329_162414 - INFO - Évaluation en cours...
+2025-03-29 16:24:30 - 20250329_162414 - INFO - Traitement réussi 20250329_162414
+2025-03-29 16:24:30 - 20250329_162430 - INFO - Début traitement demande 20250329_162430
+2025-03-29 16:24:30 - 20250329_162430 - INFO - Chargement des données
+2025-03-29 16:24:30 - 20250329_162430 - INFO - Prétraitement en cours...
+2025-03-29 16:24:31 - 20250329_162430 - INFO - Évaluation en cours...
+2025-03-29 16:24:31 - 20250329_162430 - INFO - Traitement réussi 20250329_162430
