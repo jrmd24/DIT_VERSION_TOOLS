@@ -89,3 +89,13 @@ body {
     color: rgb(92, 0, 204);
     margin-top: 25px;
 }
+
+.title3 {
+    text-decoration: underline;
+    color: rgb(2, 137, 194);
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}

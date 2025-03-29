@@ -35,11 +35,25 @@
 
 <h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
 
-<a href="{% block mlmodel_url %}{% endblock %}" download="ml_model">
-    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="75px" height="100px">
+<a href="{{ url_for('static', filename='{{model_url}}') }}" class="{{model_download_display}}" download="ml_model">
+    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="85px" height="100px">
 </a>
 
 <h2 class="title2">R&eacute;sultats de la mod&eacute;lisation</h2>
+<h3 class="title3">M&eacute;triques</h3>
+<ul>
+    {% for item in metrics_display %}
+    <li><span class="metricname">{{ item[0] }} </span>: <span class="metricvalue">{{ item[1] }}</span></li>
+    {% endfor metrics%}
+
+</ul>
+
+<h3 class="title3">Figure</h3>
+<div class="figure">
+    <img src="{{ url_for('static', filename='{{fig_path}}') }}" alt="ml_model" width="300px">
+</div>
+
+
 
 {% block commonmodelingparts %}
 {% endblock commonmodelingparts %}
