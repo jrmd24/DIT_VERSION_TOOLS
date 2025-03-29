@@ -66,6 +66,7 @@ def index():
 @app.route("/classification", methods=["GET", "POST"])
 def classification():
     context = {"page_options": page_options, "model_options": classification_models}
+    context["model_download_display"] = "hidden"
     if request.method == "POST":
         current_client_id = get_session_id()
         classification_model_selection = request.form["modelesml"]
@@ -75,7 +76,7 @@ def classification():
             uploaded_file.save(
                 f"{DATA_DIR}/{uploaded_file.filename}_{current_client_id}.txt"
             )
-            mpb.process_client_request(
+            client_id, model_file_path, metrics = mpb.process_client_request(
                 current_client_id,
                 "classification",
                 classification_model_selection,
@@ -83,13 +84,44 @@ def classification():
                 target_column_name,
             )
 
+            context["model_download_display"] = ""
+            context["model_url"] = model_file_path
+            context["metrics_display"] = [("accuracy", metrics["accuracy"])]
+            context["fig_path"] = metrics["fig_path"]
+
     return render_template("Classification.html", **context)
 
 
 @app.route("/regression", methods=["GET", "POST"])
 def regression():
     context = {"page_options": page_options, "model_options": regression_models}
-    # if request.method == 'POST':
+    context["model_download_display"] = "hidden"
+    if request.method == "POST":
+        current_client_id = get_session_id()
+        regression_model_selection = request.form["modelesml"]
+        target_column_name = request.form["targetcolumn"]
+        uploaded_file = request.files["initialDataFile"]
+        if uploaded_file.filename != "":
+            uploaded_file.save(
+                f"{DATA_DIR}/{uploaded_file.filename}_{current_client_id}.txt"
+            )
+            client_id, model_file_path, metrics = mpb.process_client_request(
+                current_client_id,
+                "regression",
+                regression_model_selection,
+                uploaded_file,
+                target_column_name,
+            )
+
+            context["model_download_display"] = ""
+            context["model_url"] = model_file_path
+            context["metrics_display"] = [
+                ("RMSE", metrics["rmse"]),
+                ("Mean Absolute Score", metrics["mae"]),
+                ("R2 Score", metrics["r2_score"]),
+            ]
+            context["fig_path"] = metrics["fig_path"]
+
     return render_template("Regression.html", **context)
 
 
