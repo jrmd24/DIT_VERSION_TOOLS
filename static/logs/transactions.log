@@ -33,3 +33,35 @@
 2025-03-28 22:02:17,183 - 20250328_220217 - Chargement des données
 2025-03-28 22:02:17,189 - 20250328_220217 - Prétraitement des données
 2025-03-28 22:02:17,486 - 20250328_220217 - Évaluation du modèle
+2025-03-29 02:17:50 - 20250329_021750 - INFO - Début traitement demande 20250329_021750
+2025-03-29 02:17:50 - 20250329_021750 - INFO - Chargement des données
+2025-03-29 02:17:52 - 20250329_021750 - ERROR - Erreur de chargement: name 'save_artifact' is not defined
+Traceback (most recent call last):
+  File "/home/nango/Documents/Cours_M2_IA/Cours_outils_versionning/Exam/ml_project_back.py", line 146, in load_data
+    save_artifact(df, DATA_DIR / f"raw_data_{request_id}.csv", request_id)
+    ^^^^^^^^^^^^^
+NameError: name 'save_artifact' is not defined
+2025-03-29 02:19:14 - 20250329_021914 - INFO - Début traitement demande 20250329_021914
+2025-03-29 02:19:14 - 20250329_021914 - INFO - Chargement des données
+2025-03-29 02:19:16 - 20250329_021914 - ERROR - Erreur de chargement: name 'save_artifact' is not defined
+Traceback (most recent call last):
+  File "/home/nango/Documents/Cours_M2_IA/Cours_outils_versionning/Exam/ml_project_back.py", line 148, in load_data
+    save_artifact(df, DATA_DIR / f"raw_data_{request_id}.csv", request_id)
+    ^^^^^^^^^^^^^
+NameError: name 'save_artifact' is not defined
+2025-03-29 02:22:07 - 20250329_022207 - INFO - Début traitement demande 20250329_022207
+2025-03-29 02:22:07 - 20250329_022207 - INFO - Chargement des données
+2025-03-29 02:22:22 - 20250329_022207 - ERROR - Échec traitement: name 'preprocess_data' is not defined
+Traceback (most recent call last):
+  File "/home/nango/Documents/Cours_M2_IA/Cours_outils_versionning/Exam/ml_project_back.py", line 103, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^
+NameError: name 'preprocess_data' is not defined
+2025-03-29 02:22:22 - 20250329_022222 - INFO - Début traitement demande 20250329_022222
+2025-03-29 02:22:22 - 20250329_022222 - INFO - Chargement des données
+2025-03-29 02:22:22 - 20250329_022222 - ERROR - Échec traitement: name 'preprocess_data' is not defined
+Traceback (most recent call last):
+  File "/home/nango/Documents/Cours_M2_IA/Cours_outils_versionning/Exam/ml_project_back.py", line 103, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^
+NameError: name 'preprocess_data' is not defined
