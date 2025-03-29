@@ -12,7 +12,7 @@
     {% endblock pageintro %}
 </p>
 
-<form action="{% block action_url %}{% endblock %}"></form>
+<form action="{% block action_url %}{% endblock %}" method="POST" enctype="multipart/form-data">
 
 <h2 class="title2">Mod&egrave;le de machine learning &agrave; entra&icirc;ner</h2>
 <label for="modelesml">S&eacute;lectionner le mod&egrave;le :</label>
@@ -35,7 +35,7 @@
 
 <h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
 
-<a href="{{ url_for('static', filename='{{model_url}}') }}" class="{{model_download_display}}" download="ml_model">
+<a href="{{ url_for('static', filename=model_url) }}" class="{{ model_download_display }}" download="ml_model">
     <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="85px" height="100px">
 </a>
 
@@ -44,16 +44,13 @@
 <ul>
     {% for item in metrics_display %}
     <li><span class="metricname">{{ item[0] }} </span>: <span class="metricvalue">{{ item[1] }}</span></li>
-    {% endfor metrics%}
-
+    {% endfor %}
 </ul>
 
 <h3 class="title3">Figure</h3>
 <div class="figure">
-    <img src="{{ url_for('static', filename='{{fig_path}}') }}" alt="ml_model" width="300px">
+    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model" width="300px">
 </div>
-
-
 
 {% block commonmodelingparts %}
 {% endblock commonmodelingparts %}
