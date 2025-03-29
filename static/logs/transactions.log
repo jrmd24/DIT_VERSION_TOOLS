@@ -65,3 +65,101 @@ Traceback (most recent call last):
     X_train, X_test, y_train, y_test = preprocess_data(
                                        ^^^^^^^^^^^^^^^
 NameError: name 'preprocess_data' is not defined
+2025-03-29 16:02:23 - 20250329_160223 - INFO - Début traitement demande 20250329_160223
+2025-03-29 16:02:23 - 20250329_160223 - INFO - Chargement des données
+2025-03-29 16:02:23 - 20250329_160223 - ERROR - Erreur de chargement: No columns to parse from file
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 164, in load_data
+    df = pd.read_csv(file_path)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\parsers.pyx", line 557, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+2025-03-29 16:02:23 - 20250329_160223 - ERROR - Échec traitement: No columns to parse from file
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 106, in process_client_request
+    df = load_data(data_file_path, request_id)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 164, in load_data
+    df = pd.read_csv(file_path)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\parsers.pyx", line 557, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+2025-03-29 16:51:57 - 20250329_165157 - INFO - Début traitement demande 20250329_165157
+2025-03-29 16:51:57 - 20250329_165157 - INFO - Chargement des données
+2025-03-29 16:51:57 - 20250329_165157 - ERROR - Erreur de chargement: No columns to parse from file
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 164, in load_data
+    df = pd.read_csv(file_path)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\parsers.pyx", line 557, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+2025-03-29 16:51:57 - 20250329_165157 - ERROR - Échec traitement: No columns to parse from file
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 106, in process_client_request
+    df = load_data(data_file_path, request_id)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 164, in load_data
+    df = pd.read_csv(file_path)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\parsers.pyx", line 557, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
