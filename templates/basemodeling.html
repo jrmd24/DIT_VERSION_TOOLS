@@ -36,7 +36,8 @@
 <h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
 
 <a href="{{ url_for('static', filename=model_url) }}" class="{{ model_download_display }}" download="ml_model">
-    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="85px" height="100px">
+    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="30px" height="33px">
+    <span class="modelfilename">&nbsp;{{model_filename}}</span>
 </a>
 
 <h2 class="title2">R&eacute;sultats de la mod&eacute;lisation</h2>
@@ -49,7 +50,7 @@
 
 <h3 class="title3">Figure</h3>
 <div class="figure">
-    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model_eval_fig" width="300px">
+    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model_eval_fig" width="600px">
 </div>
 
 {% block commonmodelingparts %}

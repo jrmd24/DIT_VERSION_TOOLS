@@ -1,6 +1,7 @@
 import json
 import logging
 import pickle
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -29,7 +30,7 @@ from sklearn.metrics import (
 from sklearn.model_selection import learning_curve, train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.svm import SVC, SVR
 from sklearn.tree import DecisionTreeClassifier
 
@@ -38,6 +39,8 @@ MODEL_DIR = Path("static/ml_models")
 REPORT_DIR = Path("static/reports/")
 LOG_DIR = Path("static/logs/")
 DATA_DIR = Path("Data/")
+
+label_encoder = LabelEncoder()
 
 
 # Configuration du logger personnalisé
@@ -112,17 +115,21 @@ def preprocess_data(df, request_id, target_col, model_type):
     backend_logger.info("Prétraitement en cours...", extra={"request_id": request_id})
 
     try:
-        # Conversion des variables catégorielles
-        categorical_cols = df.select_dtypes(include=["object", "category"]).columns
-        for col in categorical_cols:
-            if df[col].nunique() == 2:
-                df[col] = df[col].astype("category").cat.codes
-            else:
-                df = pd.get_dummies(df, columns=[col], prefix=col, drop_first=True)
+
+        if model_type == "classification":
+            df[target_col] = label_encoder.fit_transform(df[target_col])
 
         # Séparation features/target
         X = df.drop(target_col, axis=1)
         y = df[target_col]
+
+        # Conversion des variables catégorielles
+        categorical_cols = X.select_dtypes(include=["object", "category"]).columns
+        for col in categorical_cols:
+            if X[col].nunique() == 2:
+                X[col] = X[col].astype("category").cat.codes
+            else:
+                X = pd.get_dummies(X, columns=[col], prefix=col, drop_first=True)
 
         # Rééchantillonnage pour la classification
         """if model_type == "classification":
@@ -183,11 +190,11 @@ def evaluate_model(model, X_test, y_test, request_id, model_type):
     try:
         if model_type == "classification":
             y_pred = model.predict(X_test)
-            y_proba = (
+            """y_proba = (
                 model.predict_proba(X_test)[:, 1]
                 if hasattr(model, "predict_proba")
                 else None
-            )
+            )"""
 
             # Métriques
             metrics.update(
@@ -200,12 +207,30 @@ def evaluate_model(model, X_test, y_test, request_id, model_type):
                 }
             )
 
+            # Confusion Matrix figure
+            print(y_test.value_counts())
+            class_label = label_encoder.inverse_transform(y_test.unique())
+            # cm = confusion_matrix(y_test, y_pred, labels=y_test.unique())
+            cm = confusion_matrix(
+                label_encoder.inverse_transform(y_test),
+                label_encoder.inverse_transform(y_pred),
+                labels=class_label,
+            )
+
+            # class_label = y_test.unique()
+            df_cm = pd.DataFrame(cm, index=class_label, columns=class_label)
+            sns.heatmap(df_cm, annot=True, fmt="d")
+            plt.title(f"Confusion Matrix on target column for request n° {request_id}")
+            plt.xlabel("Predicted Label")
+            plt.ylabel("True Label")
+            # plt.show()
+
             # Courbe ROC
-            if y_proba is not None:
+            """if y_proba is not None:
                 fpr, tpr, _ = roc_curve(y_test, y_proba)
                 metrics["roc_auc"] = auc(fpr, tpr)
                 plt.plot(fpr, tpr, label="Courbe ROC")
-                plt.plot([0, 1], [0, 1], linestyle="--")
+                plt.plot([0, 1], [0, 1], linestyle="--")"""
 
         else:
             y_pred = model.predict(X_test)
@@ -226,7 +251,7 @@ def evaluate_model(model, X_test, y_test, request_id, model_type):
         ).name
         plt.close()
 
-        # print(metrics)
+        print(metrics)
 
         return metrics
 
@@ -290,9 +315,11 @@ def process_client_request(
             "client_id": client_request_id,
             "status": "failed",
             "error": str(e),
+            "stack": str(traceback.print_exc()),
             "timestamp": datetime.now().isoformat(),
         }
         print(error_report)
+        print(traceback.print_exc())
         save_artifact(error_report, REPORT_DIR / f"error_{request_id}.json", request_id)
         backend_logger.error(
             f"Échec traitement: {str(e)}",
