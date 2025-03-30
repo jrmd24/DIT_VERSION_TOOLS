@@ -226,9 +226,7 @@ def evaluate_model(model, X_test, y_test, request_id, model_type):
         ).name
         plt.close()
 
-        # metrics["fig_path"] = f"{REPORT_DIR}/eval_{request_id}.png"
-
-        print(metrics)
+        # print(metrics)
 
         return metrics
 
