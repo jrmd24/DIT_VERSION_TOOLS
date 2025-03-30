@@ -90,6 +90,7 @@ def classification():
 
             context["model_download_display"] = ""
             context["model_url"] = f"ml_models/{model_file_name}"
+            context["model_filename"] = model_file_name
             context["metrics_display"] = [("accuracy", metrics["accuracy"])]
             context["fig_path"] = f"reports/{metrics['fig_name']}"
 
@@ -122,6 +123,7 @@ def regression():
             context["model_download_display"] = ""
             # context["model_url"] = f"ml_models/{model_file_path.split('/')[-1]}"
             context["model_url"] = f"ml_models/{model_file_name}"
+            context["model_filename"] = model_file_name
             context["metrics_display"] = [
                 ("RMSE", metrics["rmse"]),
                 ("Mean Absolute Score", metrics["mae"]),

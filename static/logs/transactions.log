@@ -741,3 +741,690 @@ KeyError: "['wine'] not found in axis"
 2025-03-30 13:04:21 - 20250330_125115 - INFO - Prétraitement en cours...
 2025-03-30 13:04:21 - 20250330_125115 - INFO - Évaluation en cours...
 2025-03-30 13:04:22 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 13:29:15 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:29:15 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:29:15 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:29:15 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:29:15 - 20250330_125115 - ERROR - Échec évaluation: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:29:15 - 20250330_125115 - ERROR - Échec traitement: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:29:59 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:29:59 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:29:59 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:30:00 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:30:00 - 20250330_125115 - ERROR - Échec évaluation: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:30:00 - 20250330_125115 - ERROR - Échec traitement: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:33:58 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:33:58 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:33:58 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:33:58 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:33:58 - 20250330_125115 - ERROR - Échec évaluation: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:33:58 - 20250330_125115 - ERROR - Échec traitement: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:36:00 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:36:00 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:36:00 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:36:00 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:36:00 - 20250330_125115 - ERROR - Échec évaluation: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:36:36 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:36:36 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:36:36 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:36:36 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:36:37 - 20250330_125115 - ERROR - Échec évaluation: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:36:37 - 20250330_125115 - ERROR - Échec traitement: multiclass format is not supported
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 205, in evaluate_model
+    fpr, tpr, _ = roc_curve(y_test, y_proba)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_param_validation.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 1094, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\metrics\_ranking.py", line 803, in _binary_clf_curve
+    raise ValueError("{0} format is not supported".format(y_type))
+ValueError: multiclass format is not supported
+2025-03-30 13:38:11 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 13:38:11 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 13:38:11 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 13:38:11 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 13:38:12 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 15:15:22 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:15:22 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:15:22 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:15:23 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:15:23 - 20250330_125115 - ERROR - Échec évaluation: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:15:23 - 20250330_125115 - ERROR - Échec traitement: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 281, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:15:41 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:15:41 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:15:41 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:15:42 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:15:42 - 20250330_125115 - ERROR - Échec évaluation: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:15:42 - 20250330_125115 - ERROR - Échec traitement: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 281, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:26:13 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:26:13 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:26:13 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:26:13 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:26:13 - 20250330_125115 - ERROR - Échec évaluation: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 211, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:26:13 - 20250330_125115 - ERROR - Échec traitement: 'Pipeline' object has no attribute 'name'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 282, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 211, in evaluate_model
+    f"Confusion Matrix of {model.name} on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^
+AttributeError: 'Pipeline' object has no attribute 'name'
+2025-03-30 15:28:37 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:28:37 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:28:37 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:28:37 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:28:38 - 20250330_125115 - ERROR - Échec évaluation: 'Series' object has no attribute 'columns'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 211, in evaluate_model
+    f"Confusion Matrix on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 5989, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Series' object has no attribute 'columns'
+2025-03-30 15:28:38 - 20250330_125115 - ERROR - Échec traitement: 'Series' object has no attribute 'columns'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 282, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 211, in evaluate_model
+    f"Confusion Matrix on {y_test.columns} target column for request n° {request_id}"
+                           ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 5989, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Series' object has no attribute 'columns'
+2025-03-30 15:29:33 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:29:33 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:29:33 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:29:33 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:29:33 - 20250330_125115 - ERROR - Échec évaluation: set_wakeup_fd only works in main thread of the main interpreter
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 213, in evaluate_model
+    plt.show()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\pyplot.py", line 446, in show
+    return _get_backend_mod().show(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backend_bases.py", line 3620, in show
+    cls.mainloop()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_qt.py", line 602, in start_main_loop
+    with _maybe_allow_interrupt(qapp):
+  File "C:\ProgramData\anaconda3\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\qt_compat.py", line 209, in _maybe_allow_interrupt
+    old_wakeup_fd = signal.set_wakeup_fd(wsock.fileno())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: set_wakeup_fd only works in main thread of the main interpreter
+2025-03-30 15:29:33 - 20250330_125115 - ERROR - Échec traitement: set_wakeup_fd only works in main thread of the main interpreter
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 280, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 213, in evaluate_model
+    plt.show()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\pyplot.py", line 446, in show
+    return _get_backend_mod().show(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backend_bases.py", line 3620, in show
+    cls.mainloop()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_qt.py", line 602, in start_main_loop
+    with _maybe_allow_interrupt(qapp):
+  File "C:\ProgramData\anaconda3\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\qt_compat.py", line 209, in _maybe_allow_interrupt
+    old_wakeup_fd = signal.set_wakeup_fd(wsock.fileno())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: set_wakeup_fd only works in main thread of the main interpreter
+2025-03-30 15:30:39 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:30:39 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:30:39 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:30:39 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:30:39 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 15:35:18 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:35:18 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:35:18 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:35:18 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:35:19 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 15:36:16 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:36:16 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:36:16 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:36:16 - 20250330_125115 - ERROR - Échec prétraitement: "['variety'] not found in axis"
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 125, in preprocess_data
+    X = df.drop(target_col, axis=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 5258, in drop
+    return super().drop(
+           ^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4549, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4591, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6699, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['variety'] not found in axis"
+2025-03-30 15:36:16 - 20250330_125115 - ERROR - Échec traitement: "['variety'] not found in axis"
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 125, in preprocess_data
+    X = df.drop(target_col, axis=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 5258, in drop
+    return super().drop(
+           ^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4549, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4591, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6699, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['variety'] not found in axis"
+2025-03-30 15:39:24 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:39:24 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:39:24 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:39:24 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 15:39:24 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 15:39:45 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 15:39:45 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 15:39:45 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 15:39:45 - 20250330_125115 - ERROR - Échec prétraitement: "['variety'] not found in axis"
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 125, in preprocess_data
+    X = df.drop(target_col, axis=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 5258, in drop
+    return super().drop(
+           ^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4549, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4591, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6699, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['variety'] not found in axis"
+2025-03-30 15:39:45 - 20250330_125115 - ERROR - Échec traitement: "['variety'] not found in axis"
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 268, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 125, in preprocess_data
+    X = df.drop(target_col, axis=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 5258, in drop
+    return super().drop(
+           ^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4549, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 4591, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6699, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['variety'] not found in axis"
+2025-03-30 16:01:20 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:01:20 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:01:20 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:01:20 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:01:20 - 20250330_125115 - ERROR - Échec évaluation: cannot access local variable 'label_encoder' where it is not associated with a value
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    class_label = label_encoder.inverse_transform(y_test.unique())
+                  ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'label_encoder' where it is not associated with a value
+2025-03-30 16:01:20 - 20250330_125115 - ERROR - Échec traitement: cannot access local variable 'label_encoder' where it is not associated with a value
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 291, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    class_label = label_encoder.inverse_transform(y_test.unique())
+                  ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'label_encoder' where it is not associated with a value
+2025-03-30 16:02:28 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:02:28 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:02:28 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:02:28 - 20250330_125115 - ERROR - Échec prétraitement: 'variety'
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'variety'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 126, in preprocess_data
+    df[target_col] = label_encoder.fit_transform(df[target_col])
+                                                 ~~^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'variety'
+2025-03-30 16:02:28 - 20250330_125115 - ERROR - Échec traitement: 'variety'
+Traceback (most recent call last):
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'variety'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 279, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 126, in preprocess_data
+    df[target_col] = label_encoder.fit_transform(df[target_col])
+                                                 ~~^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'variety'
+2025-03-30 16:03:42 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:03:42 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:03:42 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:03:42 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:03:42 - 20250330_125115 - ERROR - Échec évaluation: cannot access local variable 'label_encoder' where it is not associated with a value
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    class_label = label_encoder.inverse_transform(y_test.unique())
+                  ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'label_encoder' where it is not associated with a value
+2025-03-30 16:03:42 - 20250330_125115 - ERROR - Échec traitement: cannot access local variable 'label_encoder' where it is not associated with a value
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 291, in process_client_request
+    metrics = evaluate_model(model, X_test, y_test, request_id, model_type)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 210, in evaluate_model
+    class_label = label_encoder.inverse_transform(y_test.unique())
+                  ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'label_encoder' where it is not associated with a value
+2025-03-30 16:05:12 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:05:12 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:05:12 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:05:12 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:05:12 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:06:42 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:06:42 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:06:42 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:06:42 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:06:42 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:15:06 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:15:06 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:15:06 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:15:06 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:15:07 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:16:10 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:16:10 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:16:10 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:16:10 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:16:10 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:16:41 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:16:41 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:16:41 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:16:41 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:16:42 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:17:23 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:17:23 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:17:37 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:17:55 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:17:55 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:20:13 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:20:13 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:20:13 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:20:13 - 20250330_125115 - ERROR - Échec prétraitement: could not convert string to float: 'yes'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 139, in preprocess_data
+    X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_set_output.py", line 140, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 915, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 837, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 1151, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 873, in partial_fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 604, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\validation.py", line 917, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_array_api.py", line 380, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 1998, in __array__
+    arr = np.asarray(values, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'yes'
+2025-03-30 16:20:13 - 20250330_125115 - ERROR - Échec traitement: could not convert string to float: 'yes'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 279, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 139, in preprocess_data
+    X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_set_output.py", line 140, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 915, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 837, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 1151, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 873, in partial_fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 604, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\validation.py", line 917, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_array_api.py", line 380, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 1998, in __array__
+    arr = np.asarray(values, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'yes'
+2025-03-30 16:23:12 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:23:12 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:23:12 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:23:12 - 20250330_125115 - ERROR - Échec prétraitement: could not convert string to float: 'yes'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 140, in preprocess_data
+    X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_set_output.py", line 140, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 915, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 837, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 1151, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 873, in partial_fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 604, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\validation.py", line 917, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_array_api.py", line 380, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 1998, in __array__
+    arr = np.asarray(values, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'yes'
+2025-03-30 16:23:12 - 20250330_125115 - ERROR - Échec traitement: could not convert string to float: 'yes'
+Traceback (most recent call last):
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 280, in process_client_request
+    X_train, X_test, y_train, y_test = preprocess_data(
+                                       ^^^^^^^^^^^^^^^^
+  File "E:\00.Divers\DIT\04.Cours\M2\03.OutilsDeVersionning\Examen\Dev\DIT_VERSION_TOOLS\ml_project_back.py", line 140, in preprocess_data
+    X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+                            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_set_output.py", line 140, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 915, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 837, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 1151, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\preprocessing\_data.py", line 873, in partial_fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\base.py", line 604, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\validation.py", line 917, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\sklearn\utils\_array_api.py", line 380, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\core\generic.py", line 1998, in __array__
+    arr = np.asarray(values, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'yes'
+2025-03-30 16:28:46 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:28:46 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:28:46 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:28:47 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:28:47 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:29:34 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:29:34 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:29:34 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:29:34 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:29:35 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:29:55 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:29:55 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:29:55 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:29:55 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:29:55 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:30:22 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:30:22 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:30:22 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:30:22 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:30:23 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:30:38 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:30:38 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:30:38 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:30:39 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:30:39 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:35:18 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:35:18 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:35:18 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:35:18 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:35:18 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:37:59 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:37:59 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:37:59 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:37:59 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:37:59 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
+2025-03-30 16:38:44 - 20250330_125115 - INFO - Début traitement demande 20250330_125115
+2025-03-30 16:38:44 - 20250330_125115 - INFO - Chargement des données
+2025-03-30 16:38:44 - 20250330_125115 - INFO - Prétraitement en cours...
+2025-03-30 16:38:44 - 20250330_125115 - INFO - Évaluation en cours...
+2025-03-30 16:38:44 - 20250330_125115 - INFO - Traitement réussi 20250330_125115
