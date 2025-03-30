@@ -118,12 +118,12 @@ def regression():
             )
 
             context["model_download_display"] = ""
-            context["model_url"] = model_file_path
+            context["model_url"] = f"ml_models/{model_file_path.split('/')[-1]}" 
             context["metrics_display"] = [
                 ("RMSE", metrics["rmse"]),
                 ("Mean Absolute Score", metrics["mae"]),
                 ("R2 Score", metrics["r2_score"]),
             ]
-            context["fig_path"] = metrics["fig_path"]
+            context["fig_path"] = f"reports/{metrics['fig_name']}"
 
     return render_template("Regression.html", **context)
