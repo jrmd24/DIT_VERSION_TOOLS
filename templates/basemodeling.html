@@ -26,10 +26,10 @@
 
     <label for="data_file">S&eacute;lectionner le fichier contenant les donn&eacute;es :</label>
     <input type="file" id="initialDataFile" name="initialDataFile" accept="text/csv, text/plain" />
-    <br />
+    <br /><br />
     <label for="targetcolumn">Saisissez le nom de votre colonne cible :</label>
     <input type="text" id="targetcolumn" name="targetcolumn" />
-    <br />
+    <br /><br />
     <input type="submit" id="initialDataFileSubmission" name="Envoyer" value="Envoyer" />
 </form>
 
@@ -49,7 +49,7 @@
 
 <h3 class="title3">Figure</h3>
 <div class="figure">
-    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model" width="300px">
+    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model_eval_fig" width="300px">
 </div>
 
 {% block commonmodelingparts %}

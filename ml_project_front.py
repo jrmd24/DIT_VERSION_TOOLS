@@ -26,21 +26,23 @@ DATA_DIR = Path("Data/")
 app.secret_key = b"H13aV1]qi$pZ"
 
 page_options = {
-    ("regression", "Regression"),
+    ("regression", "Régression"),
     ("classification", "Classification"),
     ("index", "Accueil"),
 }
 
 regression_models = [
-    ("Linear", "Regression Linéaire"),
+    ("Linear", "Régression Linéaire"),
     ("Ridge", "Ridge"),
     ("Lasso", "Lasso"),
     ("SVM", "SVM"),
+    ("RandomForest", "Random Forest"),
 ]
 classification_models = [
     ("LogisticRegression", "Régression Logistique"),
     ("SVC", "SVC"),
     ("RandomForest", "Random Forest"),
+    ("GradientBoosting", "Gradient Boosting"),
 ]
 
 
@@ -109,7 +111,7 @@ def regression():
             )
 
             uploaded_file.save(client_data_file_path)
-            client_id, model_file_path, metrics = mpb.process_client_request(
+            client_id, model_file_name, metrics = mpb.process_client_request(
                 current_client_id,
                 "regression",
                 regression_model_selection,
@@ -118,7 +120,8 @@ def regression():
             )
 
             context["model_download_display"] = ""
-            context["model_url"] = f"ml_models/{model_file_path.split('/')[-1]}" 
+            # context["model_url"] = f"ml_models/{model_file_path.split('/')[-1]}"
+            context["model_url"] = f"ml_models/{model_file_name}"
             context["metrics_display"] = [
                 ("RMSE", metrics["rmse"]),
                 ("Mean Absolute Score", metrics["mae"]),
