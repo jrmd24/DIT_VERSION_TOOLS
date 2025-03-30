@@ -73,21 +73,23 @@ def classification():
         target_column_name = request.form["targetcolumn"]
         uploaded_file = request.files["initialDataFile"]
         if uploaded_file.filename != "":
-            uploaded_file.save(
+            client_data_file_path = (
                 f"{DATA_DIR}/{uploaded_file.filename}_{current_client_id}.txt"
             )
-            client_id, model_file_path, metrics = mpb.process_client_request(
+
+            uploaded_file.save(client_data_file_path)
+            client_id, model_file_name, metrics = mpb.process_client_request(
                 current_client_id,
                 "classification",
                 classification_model_selection,
-                uploaded_file,
+                client_data_file_path,
                 target_column_name,
             )
 
             context["model_download_display"] = ""
-            context["model_url"] = model_file_path
+            context["model_url"] = f"ml_models/{model_file_name}"
             context["metrics_display"] = [("accuracy", metrics["accuracy"])]
-            context["fig_path"] = metrics["fig_path"]
+            context["fig_path"] = f"reports/{metrics['fig_name']}"
 
     return render_template("Classification.html", **context)
 
@@ -102,14 +104,16 @@ def regression():
         target_column_name = request.form["targetcolumn"]
         uploaded_file = request.files["initialDataFile"]
         if uploaded_file.filename != "":
-            uploaded_file.save(
+            client_data_file_path = (
                 f"{DATA_DIR}/{uploaded_file.filename}_{current_client_id}.txt"
             )
+
+            uploaded_file.save(client_data_file_path)
             client_id, model_file_path, metrics = mpb.process_client_request(
                 current_client_id,
                 "regression",
                 regression_model_selection,
-                uploaded_file,
+                client_data_file_path,
                 target_column_name,
             )
 
@@ -123,55 +127,3 @@ def regression():
             context["fig_path"] = metrics["fig_path"]
 
     return render_template("Regression.html", **context)
-
-
-# local_css("style.css")
-"""
-st.markdown(
-    "<h1 style='text-align: center; color:#841230;'>Groupe 4 - Outils de Versioning 2025 </h1>",
-    unsafe_allow_html=True,
-)
-st.markdown(
-    "<h2 style='text-align: center; color:#841230;'>Gestion de données de Machine Learning</h2>",
-    unsafe_allow_html=True,
-)
-
-
-
-page_options = (
-    "Télécharger données collectées",
-    "Collecter données",
-    "Remplir formulaire",
-    "Voir tableaux de bord",
-)
-
-regression_options = (
-    "Linear Regression",
-    "Ridge Regression",
-    "Lasso Regression",
-    "SVM",
-)
-
-classification_options = (
-    "Logistic Regression",
-    "Support Vector Classification",
-    "Random Forest Classifier",
-)
-
-# st.sidebar.title("Action souhaitée")
-# page = st.sidebar.selectbox("", page_options, key="action")
-
-st.title("Action souhaitée")
-page = st.selectbox("", page_options, key="action")
-
-
-if page == page_options[0]:
-    pass
-elif page == page_options[1]:
-    pass
-elif page == page_options[2]:
-    pass
-else:
-    pass
-
-"""
