@@ -1,0 +1,5 @@
+outs:
+- md5: 6592f7729c002c8230a0d3833acbda1a
+  size: 834827
+  hash: md5
+  path: Fraud_detection_model.pkl
