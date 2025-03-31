@@ -2,7 +2,22 @@
 {% block title %}Modélisation{% endblock %}
 {% block head %}
 {{ super() }}
-
+<style>
+    .figure-container {
+        margin: 20px 0;
+    }
+    .figure {
+        margin: 10px 0;
+    }
+    .figure img {
+        max-width: 100%;
+        height: auto;
+    }
+    .figure-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
 {% endblock %}
 {% block content %}
 <h1>{% block pagetitle %}Accueil{% endblock %}</h1>
@@ -35,7 +50,7 @@
 
 <h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
 
-<a href="{{ url_for('static', filename=model_url) }}" class="{{ model_download_display }}" download="ml_model">
+<a href="{{ url_for('serve_model', filename=model_filename) }}" class="{{ model_download_display }}" download="ml_model">
     <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="30px" height="33px">
     <span class="modelfilename">&nbsp;{{model_filename}}</span>
 </a>
@@ -44,13 +59,18 @@
 <h3 class="title3">M&eacute;triques</h3>
 <ul>
     {% for item in metrics_display %}
-    <li><span class="metricname">{{ item[0] }} </span>: <span class="metricvalue">{{ item[1] }}</span></li>
+    <li><span class="metricname">{{ item[0] }} </span>: <span class="metricvalue">{{ "%.4f"|format(item[1]) }}</span></li>
     {% endfor %}
 </ul>
 
-<h3 class="title3">Figure</h3>
-<div class="figure">
-    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model_eval_fig" width="600px">
+<h3 class="title3">Visualisations</h3>
+<div class="figure-container">
+    {% for title, path in figures %}
+    <div class="figure">
+        <div class="figure-title">{{ title }}</div>
+        <img src="{{ url_for('serve_report', filename=path.split('/')[-1]) }}" alt="{{ title }}" width="600px">
+    </div>
+    {% endfor %}
 </div>
 
 {% block commonmodelingparts %}

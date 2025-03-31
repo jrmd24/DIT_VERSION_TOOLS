@@ -6,7 +6,7 @@ import ml_project_back as mpb
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for, send_from_directory
 from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoescape
 
 env = Environment(
@@ -15,11 +15,16 @@ env = Environment(
     autoescape=select_autoescape(),
 )
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
-app.add_url_rule(
-    "/ML_Models/<path:filename>", endpoint="mlmodel", view_func=app.send_static_file
-)
+# Configuration des dossiers pour les rapports et modèles
+@app.route('/reports/<path:filename>')
+def serve_report(filename):
+    return send_from_directory('reports', filename)
+
+@app.route('/ml_models/<path:filename>')
+def serve_model(filename):
+    return send_from_directory('ML_Models', filename)
 
 DATA_DIR = Path("Data/")
 # Set the secret key to some random bytes. Keep this really secret! This is for session data management
@@ -89,10 +94,16 @@ def classification():
             )
 
             context["model_download_display"] = ""
-            context["model_url"] = f"ml_models/{model_file_name}"
             context["model_filename"] = model_file_name
-            context["metrics_display"] = [("accuracy", metrics["accuracy"])]
-            context["fig_path"] = f"reports/{metrics['fig_name']}"
+            context["metrics_display"] = [
+                ("Accuracy", metrics["accuracy"]),
+                ("Precision", metrics["precision"]),
+                ("Recall", metrics["recall"])
+            ]
+            context["figures"] = [
+                ("Matrice de confusion", metrics['figures']['confusion_matrix']),
+                ("Distribution des prédictions", metrics['figures']['predictions_distribution'])
+            ]
 
     return render_template("Classification.html", **context)
 
@@ -121,14 +132,15 @@ def regression():
             )
 
             context["model_download_display"] = ""
-            # context["model_url"] = f"ml_models/{model_file_path.split('/')[-1]}"
-            context["model_url"] = f"ml_models/{model_file_name}"
             context["model_filename"] = model_file_name
             context["metrics_display"] = [
                 ("RMSE", metrics["rmse"]),
                 ("Mean Absolute Score", metrics["mae"]),
                 ("R2 Score", metrics["r2_score"]),
             ]
-            context["fig_path"] = f"reports/{metrics['fig_name']}"
+            context["figures"] = [
+                ("Prédictions vs Réalité", metrics['figures']['predictions']),
+                ("Distribution des erreurs", metrics['figures']['error_distribution'])
+            ]
 
     return render_template("Regression.html", **context)

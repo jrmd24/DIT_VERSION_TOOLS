@@ -5,7 +5,10 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
+import matplotlib
+matplotlib.use('Agg')  # Utiliser le backend non-interactif
 import matplotlib.pyplot as plt
+plt.ioff()  # Désactiver le mode interactif
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -35,10 +38,10 @@ from sklearn.svm import SVC, SVR
 from sklearn.tree import DecisionTreeClassifier
 
 # Configuration des paths
-MODEL_DIR = Path("static/ml_models")
-REPORT_DIR = Path("static/reports/")
-LOG_DIR = Path("static/logs/")
-DATA_DIR = Path("Data/")
+MODEL_DIR = Path("ML_Models")
+REPORT_DIR = Path("reports")
+LOG_DIR = Path("static/logs")
+DATA_DIR = Path("Data")
 
 label_encoder = LabelEncoder()
 
@@ -61,15 +64,19 @@ def save_artifact(data, path, request_id):
     path = path.with_name(f"{path.stem}_{request_id}{path.suffix}")
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    if isinstance(data, pd.DataFrame):
-        data.to_csv(path, index=False)
-    elif isinstance(data, plt.Figure):
-        data.savefig(path, bbox_inches="tight")
-        plt.close(data)
-    else:
-        with open(path, "wb") as f:
-            pickle.dump(data, f)
-    return path
+    try:
+        if isinstance(data, pd.DataFrame):
+            data.to_csv(path, index=False)
+        elif isinstance(data, plt.Figure):
+            data.savefig(path, bbox_inches="tight")
+            plt.close(data)
+        else:
+            with open(path, "wb") as f:
+                pickle.dump(data, f)
+        return path
+    except Exception as e:
+        backend_logger.error(f"Erreur lors de la sauvegarde de l'artefact: {str(e)}")
+        raise
 
 
 # Création d'un logger dédié
@@ -185,82 +192,106 @@ def evaluate_model(model, X_test, y_test, request_id, model_type):
     backend_logger.info("Évaluation en cours...", extra={"request_id": request_id})
 
     metrics = {}
-    fig = plt.figure(figsize=(12, 6))
-
+    
     try:
         if model_type == "classification":
             y_pred = model.predict(X_test)
-            """y_proba = (
-                model.predict_proba(X_test)[:, 1]
-                if hasattr(model, "predict_proba")
-                else None
-            )"""
 
-            # Métriques
-            metrics.update(
-                {
-                    "accuracy": accuracy_score(y_test, y_pred),
-                    "confusion_matrix": confusion_matrix(y_test, y_pred).tolist(),
-                    "classification_report": classification_report(
-                        y_test, y_pred, output_dict=True
-                    ),
-                }
-            )
+            # Métriques de base
+            class_report = classification_report(y_test, y_pred, output_dict=True)
+            metrics.update({
+                "accuracy": accuracy_score(y_test, y_pred),
+                "confusion_matrix": confusion_matrix(y_test, y_pred).tolist(),
+                "classification_report": class_report,
+                "precision": class_report['weighted avg']['precision'],
+                "recall": class_report['weighted avg']['recall']
+            })
 
-            # Confusion Matrix figure
+            # Créer une nouvelle figure pour la matrice de confusion
+            fig_confusion = plt.figure(figsize=(10, 8))
             print(y_test.value_counts())
             class_label = label_encoder.inverse_transform(y_test.unique())
-            # cm = confusion_matrix(y_test, y_pred, labels=y_test.unique())
             cm = confusion_matrix(
                 label_encoder.inverse_transform(y_test),
                 label_encoder.inverse_transform(y_pred),
                 labels=class_label,
             )
 
-            # class_label = y_test.unique()
             df_cm = pd.DataFrame(cm, index=class_label, columns=class_label)
-            sns.heatmap(df_cm, annot=True, fmt="d")
-            plt.title(f"Confusion Matrix on target column for request n° {request_id}")
-            plt.xlabel("Predicted Label")
-            plt.ylabel("True Label")
-            # plt.show()
+            sns.heatmap(df_cm, annot=True, fmt="d", cmap='Blues')
+            plt.title(f"Matrice de confusion - {model_type}")
+            plt.xlabel("Prédiction")
+            plt.ylabel("Valeur réelle")
+            
+            # Sauvegarder la figure
+            confusion_path = save_artifact(fig_confusion, REPORT_DIR / f"confusion_matrix_{request_id}.png", request_id)
+            plt.close(fig_confusion)
 
-            # Courbe ROC
-            """if y_proba is not None:
-                fpr, tpr, _ = roc_curve(y_test, y_proba)
-                metrics["roc_auc"] = auc(fpr, tpr)
-                plt.plot(fpr, tpr, label="Courbe ROC")
-                plt.plot([0, 1], [0, 1], linestyle="--")"""
+            # Créer une figure pour la distribution des prédictions
+            fig_dist = plt.figure(figsize=(10, 6))
+            sns.countplot(x=y_pred)
+            plt.title(f"Distribution des prédictions - {model_type}")
+            plt.xlabel("Classes")
+            plt.ylabel("Nombre d'observations")
+            
+            # Sauvegarder la figure
+            dist_path = save_artifact(fig_dist, REPORT_DIR / f"predictions_dist_{request_id}.png", request_id)
+            plt.close(fig_dist)
+
+            # Ajouter les chemins des figures aux métriques
+            metrics["figures"] = {
+                "confusion_matrix": confusion_path.name,
+                "predictions_distribution": dist_path.name
+            }
 
         else:
             y_pred = model.predict(X_test)
-            metrics.update(
-                {
-                    "rmse": np.sqrt(mean_squared_error(y_test, y_pred)),
-                    "mae": mean_absolute_error(y_test, y_pred),
-                    "r2_score": r2_score(y_test, y_pred),
-                }
-            )
-            plt.scatter(y_test, y_pred)
-            plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "r--")
+            metrics.update({
+                "rmse": np.sqrt(mean_squared_error(y_test, y_pred)),
+                "mae": mean_absolute_error(y_test, y_pred),
+                "r2_score": r2_score(y_test, y_pred),
+            })
+            
+            # Créer une figure pour les prédictions vs réalité
+            fig_pred = plt.figure(figsize=(10, 6))
+            plt.scatter(y_test, y_pred, alpha=0.5)
+            plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', label='Ligne parfaite')
+            plt.title(f"Prédictions vs Réalité - {model_type}")
+            plt.xlabel("Valeurs réelles")
+            plt.ylabel("Prédictions")
+            plt.legend()
+            
+            # Sauvegarder la figure
+            pred_path = save_artifact(fig_pred, REPORT_DIR / f"predictions_{request_id}.png", request_id)
+            plt.close(fig_pred)
 
-        # Sauvegarde visualisation
-        plt.title(f"Résultats {model_type} - {request_id}")
-        metrics["fig_name"] = save_artifact(
-            fig, REPORT_DIR / f"eval_{request_id}.png", request_id
-        ).name
-        plt.close()
+            # Créer une figure pour la distribution des erreurs
+            fig_error = plt.figure(figsize=(10, 6))
+            errors = y_pred - y_test
+            sns.histplot(errors, kde=True)
+            plt.title(f"Distribution des erreurs - {model_type}")
+            plt.xlabel("Erreur de prédiction")
+            plt.ylabel("Fréquence")
+            
+            # Sauvegarder la figure
+            error_path = save_artifact(fig_error, REPORT_DIR / f"error_dist_{request_id}.png", request_id)
+            plt.close(fig_error)
 
-        print(metrics)
+            # Ajouter les chemins des figures aux métriques
+            metrics["figures"] = {
+                "predictions": pred_path.name,
+                "error_distribution": error_path.name
+            }
 
         return metrics
 
     except Exception as e:
         backend_logger.error(
-            f"Échec évaluation: {str(e)}",
+            f"Erreur lors de l'évaluation: {str(e)}",
             extra={"request_id": request_id},
             exc_info=True,
         )
+        plt.close('all')  # S'assurer que toutes les figures sont fermées en cas d'erreur
         raise
 
 
@@ -327,6 +358,16 @@ def process_client_request(
             exc_info=True,
         )
         return request_id, Path(""), {"error": str(e)}
+
+
+def load_model(model_path):
+    """Charge un modèle sauvegardé"""
+    try:
+        with open(model_path, 'rb') as f:
+            return pickle.load(f)
+    except Exception as e:
+        backend_logger.error(f"Erreur lors du chargement du modèle: {str(e)}")
+        raise
 
 
 if __name__ == "__main__":
