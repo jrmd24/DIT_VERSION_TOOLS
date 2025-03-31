@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        dockerContainer {
+            image 'python:3.11'
+        }
+    }
     
     stages {
         stage('Setup') {
