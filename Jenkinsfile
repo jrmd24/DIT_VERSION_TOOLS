@@ -1,87 +1,130 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9'
-        }
+    agent any
+    
+    environment {
+        PYTHON_VERSION = '3.9'
+        VENV_NAME = 'ml_project_venv'
     }
     
     stages {
-        stage('Setup') {
+        stage('Préparation Environnement') {
             steps {
-                echo 'Installing dependencies...'
-                sh 'pip install -r requirements.txt'
-                sh 'pip install pytest pytest-cov dvc'
-                sh 'dvc pull'
+                script {
+                    // Installation de Python et virtualenv si nécessaire
+                    sh '''
+                        if ! command -v python${PYTHON_VERSION} &> /dev/null; then
+                            sudo apt-get update
+                            sudo apt-get install -y python${PYTHON_VERSION} python${PYTHON_VERSION}-venv python${PYTHON_VERSION}-dev
+                        fi
+                    '''
+                    
+                    // Création et activation de l'environnement virtuel
+                    sh """
+                        python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                        . ${VENV_NAME}/bin/activate
+                        python -m pip install --upgrade pip
+                        pip install -r requirements.txt
+                        pip install pytest pytest-cov dvc
+                    """
+                }
             }
         }
         
-        stage('Backend Tests') {
+        stage('DVC Pull') {
             steps {
-                echo 'Running backend tests...'
-                sh 'python -m pytest ml_project_test.py -v --cov=ml_project_back'
+                script {
+                    sh """
+                        . ${VENV_NAME}/bin/activate
+                        dvc pull
+                    """
+                }
+            }
+        }
+        
+        stage('Tests Backend') {
+            steps {
+                script {
+                    sh """
+                        . ${VENV_NAME}/bin/activate
+                        python -m pytest ml_project_test.py -v --cov=ml_project_back
+                    """
+                }
             }
             post {
                 always {
-                    echo 'Backend tests completed'
+                    echo 'Tests backend terminés'
                 }
                 success {
-                    echo 'All backend tests passed!'
+                    echo 'Tous les tests backend ont réussi !'
                 }
                 failure {
-                    echo 'Backend tests failed! Check logs for details.'
+                    echo 'Échec des tests backend ! Vérifiez les logs.'
                 }
             }
         }
 
-        stage('Frontend Tests') {
+        stage('Tests Frontend') {
             steps {
-                echo 'Running frontend tests...'
-                sh 'python -m pytest -v --cov=ml_project_front'
+                script {
+                    sh """
+                        . ${VENV_NAME}/bin/activate
+                        python -m pytest -v --cov=ml_project_front
+                    """
+                }
             }
             post {
                 always {
-                    echo 'Frontend tests completed'
+                    echo 'Tests frontend terminés'
                 }
             }
         }
         
-        stage('Integration Test') {
+        stage('Tests Intégration') {
             steps {
-                echo 'Running integration tests...'
-                sh 'python ml_project_back.py &'
-                sh 'sleep 5'  // Wait for backend to start
-                sh 'python ml_project_front.py &'
-                sh 'sleep 5'  // Wait for frontend to start
-                sh 'curl -f http://localhost:5000/health || exit 1'  // Basic health check
+                script {
+                    sh """
+                        . ${VENV_NAME}/bin/activate
+                        python ml_project_back.py &
+                        sleep 5  # Attente du démarrage du backend
+                        python ml_project_front.py &
+                        sleep 5  # Attente du démarrage du frontend
+                        curl -f http://localhost:5000/health || exit 1  # Vérification santé
+                    """
+                }
             }
         }
         
-        stage('Build') {
+        stage('Métriques DVC') {
             steps {
-                echo 'Building application...'
-                sh 'docker build -t ml-app:latest .'
-            }
-        }
-
-        stage('DVC Metrics') {
-            steps {
-                echo 'Checking DVC metrics...'
-                sh 'dvc metrics show'
-                sh 'dvc plots show'
+                script {
+                    sh """
+                        . ${VENV_NAME}/bin/activate
+                        dvc metrics show
+                        dvc plots show
+                    """
+                }
             }
         }
     }
     
     post {
         success {
-            echo 'Pipeline succeeded! Application ready for deployment.'
+            echo 'Pipeline réussi ! Application prête pour le déploiement.'
         }
         failure {
-            echo 'Pipeline failed! Check the logs for details.'
+            echo 'Pipeline échoué ! Vérifiez les logs.'
         }
         always {
-            sh 'pkill -f "python ml_project_back.py" || true'
-            sh 'pkill -f "python ml_project_front.py" || true'
+            script {
+                // Nettoyage des processus
+                sh '''
+                    pkill -f "python ml_project_back.py" || true
+                    pkill -f "python ml_project_front.py" || true
+                '''
+                
+                // Nettoyage de l'environnement virtuel
+                sh "rm -rf ${VENV_NAME}"
+            }
         }
     }
 } 
