@@ -1,0 +1,106 @@
+.important {
+    color: #336699;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+
+    /*position: relative;*/
+    min-height: 100vh;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    padding-top: 80px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    position: relative;
+    /*top: 65px;*/
+    left: -70px;
+    /* Masquer par défaut */
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    /* Afficher lorsque la classe "open" est ajoutée */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    text-align: center;
+    /* Footer height */
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 150px;
+    }
+}
+
+.title2 {
+    border-bottom: 1px solid rgb(92, 0, 204);
+    color: rgb(92, 0, 204);
+    margin-top: 25px;
+}
+
+.title3 {
+    text-decoration: underline;
+    color: rgb(2, 137, 194);
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.modelfilename {
+    font-weight: bold;
+    color: blueviolet;
+}
