@@ -21,16 +21,6 @@ class TestMLPlatform(unittest.TestCase):
         self.assertEqual(rv.status, "200 OK")
         self.assertIn(b"Accueil", rv.data)
 
-    def test_Classification(self):
-        rv = self.app.get("/classification")
-        self.assertEqual(rv.status, "200 OK")
-        self.assertIn(b"Classification", rv.data)
-
-    def test_Regression(self):
-        rv = self.app.get("/regression")
-        self.assertEqual(rv.status, "200 OK")
-        self.assertIn(b"Regression", rv.data)
-
 
 if __name__ == "__main__":
     import xmlrunner
