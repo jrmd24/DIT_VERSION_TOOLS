@@ -1,0 +1,59 @@
+{% extends "masterpage.html" %}
+{% block title %}Modélisation{% endblock %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block content %}
+<h1>{% block pagetitle %}Accueil{% endblock %}</h1>
+<p class="important">
+    {% block pageintro %}
+
+    {% endblock pageintro %}
+</p>
+
+<form action="{% block action_url %}{% endblock %}" method="POST" enctype="multipart/form-data">
+
+    <h2 class="title2">Mod&egrave;le de machine learning &agrave; entra&icirc;ner</h2>
+    <label for="modelesml">S&eacute;lectionner le mod&egrave;le :</label>
+    <select name="modelesml" id="modelesml">
+        {% for item in model_options %}
+        <option value="{{ item[0] }}">{{ item[1] }}</option>
+        {% endfor %}
+    </select>
+
+    <h2 class="title2">Donn&eacute;es initiales</h2>
+
+    <label for="data_file">S&eacute;lectionner le fichier contenant les donn&eacute;es :</label>
+    <input type="file" id="initialDataFile" name="initialDataFile" accept="text/csv, text/plain" />
+    <br /><br />
+    <label for="targetcolumn">Saisissez le nom de votre colonne cible :</label>
+    <input type="text" id="targetcolumn" name="targetcolumn" />
+    <br /><br />
+    <input type="submit" id="initialDataFileSubmission" name="Envoyer" value="Envoyer" />
+</form>
+
+<h2 class="title2">Mod&egrave;le g&eacute;n&eacute;r&eacute;</h2>
+
+<a href="{{ url_for('static', filename=model_url) }}" class="{{ model_download_display }}" download="ml_model">
+    <img src="{{ url_for('static', filename='DownloadMLModel.png') }}" alt="ml_model" width="30px" height="33px">
+    <span class="modelfilename">&nbsp;{{model_filename}}</span>
+</a>
+
+<h2 class="title2">R&eacute;sultats de la mod&eacute;lisation</h2>
+<h3 class="title3">M&eacute;triques</h3>
+<ul>
+    {% for item in metrics_display %}
+    <li><span class="metricname">{{ item[0] }} </span>: <span class="metricvalue">{{ item[1] }}</span></li>
+    {% endfor %}
+</ul>
+
+<h3 class="title3">Figure</h3>
+<div class="figure">
+    <img src="{{ url_for('static', filename=fig_path) }}" alt="ml_model_eval_fig" width="600px">
+</div>
+
+{% block commonmodelingparts %}
+{% endblock commonmodelingparts %}
+
+{% endblock %}
