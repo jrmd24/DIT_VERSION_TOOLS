@@ -5,7 +5,7 @@ scipy
 matplotlib
 pandas
 scikit-learn
-imblearn
+#imblearn
 #streamlit
 seaborn
 pybase64
@@ -13,4 +13,5 @@ python-dotenv
 Watchdog
 greenlet
 Flask
-imblearn
+#imblearn
+unittest
