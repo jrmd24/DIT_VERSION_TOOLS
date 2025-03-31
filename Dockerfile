@@ -24,6 +24,6 @@ RUN pip install -r requirements.txt
 #EXPOSE 8501
 EXPOSE 5000
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:5000/_stcore/health
 
 ENTRYPOINT ["flask", "--app", "ml_project_front", "run", "--host=0.0.0.0", "--port=5000"]
