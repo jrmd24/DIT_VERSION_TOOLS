@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        dockerContainer {
+        docker {
             image 'ubuntu:22.04'
         }
     }
