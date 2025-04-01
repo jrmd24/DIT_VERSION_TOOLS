@@ -177,6 +177,6 @@ class TestMLPlatform(unittest.TestCase):
 if __name__ == "__main__":
     import xmlrunner
 
-    # config for automated test report generation
+    # config for automated test reporting
     runner = xmlrunner.XMLTestRunner(output="static/test-reports")
     unittest.main(testRunner=runner)
