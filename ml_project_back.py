@@ -72,6 +72,15 @@ def save_artifact(data, path, request_id):
     return path
 
 
+def load_model(path):
+    model = None
+    # load
+    with open(path, "rb") as f:
+        model = pickle.load(f)
+
+    return model
+
+
 # Création d'un logger dédié
 backend_logger = logging.getLogger("ML_Backend")
 backend_logger.setLevel(logging.INFO)
