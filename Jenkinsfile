@@ -10,7 +10,7 @@ pipeline {
   }
 
     environment {
-        PYTHON_VERSION = '3.9'
+        PYTHON_VERSION = '3.12'
         VENV_NAME = 'ml_project_venv'
     }
     
@@ -18,12 +18,12 @@ pipeline {
         stage('Setup') {
             steps {
                 echo 'Installing python and necessary dependencies...'
-                sh '''
+                sh """
                         if ! command -v python${PYTHON_VERSION} &> /dev/null; then
                             sudo apt-get update
                             sudo apt-get install -y python${PYTHON_VERSION} python${PYTHON_VERSION}-venv python${PYTHON_VERSION}-dev
                         fi
-                    '''
+                    """
 
                 // Création et activation de l'environnement virtuel
                 sh """
@@ -39,7 +39,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'python ml_project_test.py -v'
+                sh "python ml_project_test.py -v"
             }
             post {
                 always {
