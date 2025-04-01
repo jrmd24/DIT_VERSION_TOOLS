@@ -1,15 +1,30 @@
 pipeline {
-    agent {
-        dockerContainer {
-            image 'python:3.12'
-        }
+    agent any
+
+    environment {
+        PYTHON_VERSION = '3.9'
+        VENV_NAME = 'ml_project_venv'
     }
     
     stages {
         stage('Setup') {
             steps {
-                echo 'Installing dependencies...'
-                sh 'pip install -r requirements.txt'
+                echo 'Installing python and necessary dependencies...'
+                sh '''
+                        if ! command -v python${PYTHON_VERSION} &> /dev/null; then
+                            sudo apt-get update
+                            sudo apt-get install -y python${PYTHON_VERSION} python${PYTHON_VERSION}-venv python${PYTHON_VERSION}-dev
+                        fi
+                    '''
+
+                // Création et activation de l'environnement virtuel
+                sh """
+                        python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                        . ${VENV_NAME}/bin/activate
+                        python -m pip install --upgrade pip
+                        pip install -r requirements.txt
+                        pip install pytest pytest-cov
+                    """
             }
         }
         
@@ -41,7 +56,18 @@ pipeline {
     }
     
     post {
-         always {junit 'test-reports/*.xml'}
+         always {junit 'test-reports/*.xml'
+            script {
+                // Nettoyage des processus
+                sh '''
+                    pkill -f "python ml_project_back.py" || true
+                    pkill -f "python ml_project_front.py" || true
+                '''
+                
+                // Nettoyage de l'environnement virtuel
+                sh "rm -rf ${VENV_NAME}"
+            }
+         }
         
     }
 } 
