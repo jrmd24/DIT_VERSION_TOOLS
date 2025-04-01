@@ -55,6 +55,11 @@ class TestMLPlatform(unittest.TestCase):
         self.assertEqual(rv.status, "200 OK")
         self.assertIn(b"Accueil", rv.data)
 
+    def test_Classification(self):
+        rv = self.app.get("/classification")
+        self.assertEqual(rv.status, "200 OK")
+        self.assertIn(b"Classification", rv.data)
+
     def tearDown(self):
         # Clean up test files
         if self.reg_file_path.exists():
@@ -177,6 +182,6 @@ class TestMLPlatform(unittest.TestCase):
 if __name__ == "__main__":
     import xmlrunner
 
-    # config for automated test reporting
+    # config for test reporting
     runner = xmlrunner.XMLTestRunner(output="static/test-reports")
     unittest.main(testRunner=runner)
