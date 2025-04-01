@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        dockerContainer {
+            image 'ubuntu:22.04'
+        }
+    }
 
     triggers {
     githubPush()
