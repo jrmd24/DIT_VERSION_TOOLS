@@ -13,6 +13,4 @@ python-dotenv
 Watchdog
 greenlet
 Flask
-#imblearn
-setuptools
-xmlrunner
+unittest-xml-reporting
