@@ -29,9 +29,9 @@ pipeline {
                             pip install -r requirements.txt
                         """
                     } else {
-                        bat """
-                            python -m venv ${VENV_NAME}
-                            .\\${VENV_NAME}\\Scripts\\activate
+                        //# python -m venv ${VENV_NAME}
+                        //#.\\${VENV_NAME}\\Scripts\\activate
+                        bat """                            
                             python -m pip install --upgrade pip
                             pip install -r requirements.txt
                         """
@@ -94,8 +94,8 @@ pipeline {
                         taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_back.py" || exit 0
                         taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_front.py" || exit 0
                     '''
-                    bat "deactivate"
-                    bat "rmdir /s /q ${VENV_NAME}"
+                    //bat "deactivate"
+                    //bat "rmdir /s /q ${VENV_NAME}"
                 }
             }
         }
