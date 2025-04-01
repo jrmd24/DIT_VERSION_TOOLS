@@ -14,5 +14,4 @@ Watchdog
 greenlet
 Flask
 #imblearn
-unittest
 xmlrunner
