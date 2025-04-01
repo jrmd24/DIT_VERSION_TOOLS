@@ -177,5 +177,5 @@ class TestMLPlatform(unittest.TestCase):
 if __name__ == "__main__":
     import xmlrunner
 
-    runner = xmlrunner.XMLTestRunner(output="test-reports")
+    runner = xmlrunner.XMLTestRunner(output="static/test-reports")
     unittest.main(testRunner=runner)

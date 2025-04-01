@@ -56,7 +56,7 @@ pipeline {
     }
     
     post {
-         always {junit 'test-reports/*.xml'
+         always {junit 'static/test-reports/*.xml'
             script {
                 // Nettoyage des processus
                 sh '''
