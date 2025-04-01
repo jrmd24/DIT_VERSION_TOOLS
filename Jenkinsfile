@@ -1,45 +1,55 @@
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:22.04'
-        }
-    }
+    agent any
 
     triggers {
-    githubPush()
-  }
+        githubPush()
+    }
 
     environment {
         PYTHON_VERSION = '3.12'
         VENV_NAME = 'ml_project_venv'
     }
-    
+
     stages {
         stage('Setup') {
             steps {
                 echo 'Installing python and necessary dependencies...'
-                sh """
-                        if ! command -v python${PYTHON_VERSION} &> /dev/null; then
-                            sudo apt-get update
-                            sudo apt-get install -y python${PYTHON_VERSION} python${PYTHON_VERSION}-venv python${PYTHON_VERSION}-dev
-                        fi
-                    """
-
-                // Création et activation de l'environnement virtuel
-                sh """
-                        python${PYTHON_VERSION} -m venv ${VENV_NAME}
-                        . ${VENV_NAME}/bin/activate
-                        python -m pip install --upgrade pip
-                        pip install -r requirements.txt
-                        pip install pytest pytest-cov
-                    """
+                script {
+                    if (isUnix()) {
+                        sh """
+                            if ! command -v python${PYTHON_VERSION} &> /dev/null; then
+                                sudo apt-get update
+                                sudo apt-get install -y python${PYTHON_VERSION} python${PYTHON_VERSION}-venv python${PYTHON_VERSION}-dev
+                            fi
+                        """
+                        sh """
+                            python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                            . ${VENV_NAME}/bin/activate
+                            python -m pip install --upgrade pip
+                            pip install -r requirements.txt
+                        """
+                    } else {
+                        bat """
+                            python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                            .\\${VENV_NAME}\\Scripts\\activate
+                            python -m pip install --upgrade pip
+                            pip install -r requirements.txt
+                        """
+                    }
+                }
             }
         }
-        
+
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh "python ml_project_test.py -v"
+                script {
+                    if (isUnix()) {
+                        sh "python ml_project_test.py -v"
+                    } else {
+                        bat "python ml_project_test.py -v"
+                    }
+                }
             }
             post {
                 always {
@@ -53,29 +63,40 @@ pipeline {
                 }
             }
         }
-        
-        
+
         stage('Build') {
             steps {
                 echo 'Building application...'
-                sh 'docker build -t dit-g4-ml-app:latest .'
+                script {
+                    if (isUnix()) {
+                        sh 'docker build -t dit-g4-ml-app:latest .'
+                    } else {
+                        // Assuming Docker Desktop is installed and configured on Windows.
+                        bat 'docker build -t dit-g4-ml-app:latest .'
+                    }
+                }
             }
         }
     }
-    
+
     post {
-         always {junit 'static/test-reports/*.xml'
+        always {
+            junit 'static/test-reports/*.xml'
             script {
-                // Nettoyage des processus
-                sh '''
-                    pkill -f "python ml_project_back.py" || true
-                    pkill -f "python ml_project_front.py" || true
-                '''
-                
-                // Nettoyage de l'environnement virtuel
-                sh "rm -rf ${VENV_NAME}"
+                if (isUnix()) {
+                    sh '''
+                        pkill -f "python ml_project_back.py" || true
+                        pkill -f "python ml_project_front.py" || true
+                    '''
+                    sh "rm -rf ${VENV_NAME}"
+                } else {
+                    bat '''
+                        taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_back.py" || exit 0
+                        taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_front.py" || exit 0
+                    '''
+                    bat "rmdir /s /q ${VENV_NAME}"
+                }
             }
-         }
-        
+        }
     }
-} 
+}
