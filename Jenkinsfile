@@ -94,6 +94,7 @@ pipeline {
                         taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_back.py" || exit 0
                         taskkill /F /FI "IMAGENAME eq python.exe" /FI "WINDOWTITLE eq python ml_project_front.py" || exit 0
                     '''
+                    bat "deactivate"
                     bat "rmdir /s /q ${VENV_NAME}"
                 }
             }
