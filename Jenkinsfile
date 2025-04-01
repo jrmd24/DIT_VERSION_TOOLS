@@ -23,14 +23,14 @@ pipeline {
                             fi
                         """
                         sh """
-                            python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                            python -m venv ${VENV_NAME}
                             . ${VENV_NAME}/bin/activate
                             python -m pip install --upgrade pip
                             pip install -r requirements.txt
                         """
                     } else {
                         bat """
-                            python${PYTHON_VERSION} -m venv ${VENV_NAME}
+                            python -m venv ${VENV_NAME}
                             .\\${VENV_NAME}\\Scripts\\activate
                             python -m pip install --upgrade pip
                             pip install -r requirements.txt
